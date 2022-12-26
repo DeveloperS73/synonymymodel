@@ -17,9 +17,6 @@ embeddings = model.encode(sentences)
 s = sentence_transformers.util.cos_sim(a=embeddings[0], b=embeddings[1])
 print('Вероятность смыслового совпадения:', s)
 
-print(embed_bert_cls('Привет мир', model, tokenizer))
-# (312,)
-
 sentences = ["Гагарин - первый в Космосе", "Армстронг - первый на луне"]
 embeddings = model.encode(sentences)
 s = sentence_transformers.util.cos_sim(a=embeddings[0], b=embeddings[1])
@@ -85,3 +82,5 @@ def embed_bert_cls(text, model, tokenizer):
     embeddings = model_output.last_hidden_state[:, 0, :]
     embeddings = torch.nn.functional.normalize(embeddings)
     return embeddings[0].cpu().numpy()
+
+print(embed_bert_cls('Привет мир', model, tokenizer))
